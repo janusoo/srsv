@@ -1,6 +1,6 @@
 var gamePrompt = require('game-prompt');
 var assistOffer = '"How can we assist you?" \nAsk about (A)rtifact \nAsk about other (P)lanets \n(L)eave';
-var whereToMessage = '"Where to,  Captain ' + playerName + '?" \n(E)arth (10 lightyears) \n(M)esnides (20 lightyears) \n(L)aplides (50 lightyears) \n(K)iyturn (120 lightyears) \n(A)enides (25 lightyears) \n(C)ramuthea (200 lightyears) \n(S)meon T9Q (400 lightyears) \n(G)leshan 7Z9 (85 lightyears)';
+var whereToMessage = '"Where to, Captain ' + playerName + '?" \n(E)arth (10 lightyears) \n(M)esnides (20 lightyears) \n(L)aplides (50 lightyears) \n(K)iyturn (120 lightyears) \n(A)enides (25 lightyears) \n(C)ramuthea (200 lightyears) \n(S)meon T9Q (400 lightyears) \n(G)leshan 7Z9 (85 lightyears)';
 
 // Global veriables
 var playerName;
@@ -46,7 +46,7 @@ function collectName(name) {
 	// }
 
 	gamePrompt([
-		'"Thank you, Captain ' + playerName + ' ."',
+		'"Thank you, Captain ' + playerName + '."',
 		'"Please state your vehicle name for identity verification."'
 	], collectVehicleName);
 }
@@ -57,7 +57,7 @@ function collectVehicleName(name) {
 	gamePrompt([
 			'"Thank you, Captain ' + playerName + '."',
 			'"' + vehicleName + ' has 1000 gallons of fuel.',
-			'"So! ' + whereToMessage
+			'"So! ' + '"Where to, Captain ' + playerName + '?" \n(E)arth (10 lightyears) \n(M)esnides (20 lightyears) \n(L)aplides (50 lightyears) \n(K)iyturn (120 lightyears) \n(A)enides (25 lightyears) \n(C)ramuthea (200 lightyears) \n(S)meon T9Q (400 lightyears) \n(G)leshan 7Z9 (85 lightyears)'
 		], selectDestination);
 }
 
@@ -123,7 +123,7 @@ function travelToMesnides() {
 function travelToLaplides() {
 	gamePrompt(
 		["You enter orbit around Laplides. Looking down at the planet, you see signs of atomic war and realize there is no option but to turn around.",
-		whereToMessage], selectDestination)
+		'"Where to, Captain ' + playerName + '?" \n(E)arth (10 lightyears) \n(M)esnides (20 lightyears) \n(L)aplides (50 lightyears) \n(K)iyturn (120 lightyears) \n(A)enides (25 lightyears) \n(C)ramuthea (200 lightyears) \n(S)meon T9Q (400 lightyears) \n(G)leshan 7Z9 (85 lightyears)'], selectDestination)
 }
 
 function travelToKiyturn() {
@@ -137,18 +137,22 @@ function travelToKiyturn() {
 function travelToAenides() {
 	gamePrompt(
 		["You discover upon arrival to Aenides that they are a hostile people. You attempt to land, but they begin to fire upon your S.R.S.V. and you are forced to retreat.",
-		whereToMessage], selectDestination)
+		'"Where to, Captain ' + playerName + '?" \n(E)arth (10 lightyears) \n(M)esnides (20 lightyears) \n(L)aplides (50 lightyears) \n(K)iyturn (120 lightyears) \n(A)enides (25 lightyears) \n(C)ramuthea (200 lightyears) \n(S)meon T9Q (400 lightyears) \n(G)leshan 7Z9 (85 lightyears)'], selectDestination)
 }
 
 function travelToCramuthea() {
+	gallonsOfFuel = gallonsOfFuel + 500;
 	gamePrompt(
-		["Cramuthea has been abandoned due to global environmental disaster, but there are remnants of the people that left. You are able to refuel your ship (+500 gallons) and read a beacon signal that tells you the Cramuthean people have migrated to Smeon T9Q.",
-		whereToMessage], selectDestination)
+		['You now have ' + gallonsOfFuel + ' gallons of fuel.',
+		"Cramuthea has been abandoned due to global environmental disaster, but there are remnants of the people that left. You are able to refuel your ship (+500 gallons) and read a beacon signal that tells you the Cramuthean people have migrated to Smeon T9Q.",
+		'"Where to, Captain ' + playerName + '?" \n(E)arth (10 lightyears) \n(M)esnides (20 lightyears) \n(L)aplides (50 lightyears) \n(K)iyturn (120 lightyears) \n(A)enides (25 lightyears) \n(C)ramuthea (200 lightyears) \n(S)meon T9Q (400 lightyears) \n(G)leshan 7Z9 (85 lightyears)'], selectDestination)
 }
 
 function travelToSmeon() {
+	gallonsOfFuel = gallonsOfFuel + 100;
 	gamePrompt(
-		["The Cramuthean people, living on Smeon T9Q, are a friendly people that give you some fuel (+100 gallons) when you arrive.",
+		['You now have ' + gallonsOfFuel + ' gallons of fuel.',
+		"The Cramuthean people, living on Smeon T9Q, are a friendly people that give you some fuel (+100 gallons) when you arrive.",
 		assistOffer
 		], selectActionSmeon)
 }
@@ -165,7 +169,6 @@ function travelToGleshan() {
 // selectAction functions
 function selectActionEarth(action) {
 	if (action === 'a') {
-		artifactCollection.push('Myoin Horn');
 		gamePrompt(
 			['The Mesnidian says, "Here, take this Myoin Horn, an ancient Mesnidian instrument."',
 			assistOffer], selectActionMesnides);
@@ -176,7 +179,7 @@ function selectActionEarth(action) {
 	} else if (action === 'l') {
 		gamePrompt(
 			['Thank you for visiting Mesnides. We hope you will come by again',
-			'"So! ' + whereToMessage], selectDestination);
+			'"So! ' + '"Where to, Captain ' + playerName + '?" \n(E)arth (10 lightyears) \n(M)esnides (20 lightyears) \n(L)aplides (50 lightyears) \n(K)iyturn (120 lightyears) \n(A)enides (25 lightyears) \n(C)ramuthea (200 lightyears) \n(S)meon T9Q (400 lightyears) \n(G)leshan 7Z9 (85 lightyears)'], selectDestination);
 	} else {
 		gamePrompt(
 			'"You must select one of these three actions." \nAsk about (A)rtifact \nAsk about other (P)lanets \n(L)eave', selectActionMesnides);
@@ -196,7 +199,7 @@ function selectActionMesnides(action) {
 	} else if (action === 'l') {
 		gamePrompt(
 			['Thank you for visiting Mesnides. We hope you will come by again',
-			'"So! ' + whereToMessage], selectDestination);
+			'"So! ' + '"Where to, Captain ' + playerName + '?" \n(E)arth (10 lightyears) \n(M)esnides (20 lightyears) \n(L)aplides (50 lightyears) \n(K)iyturn (120 lightyears) \n(A)enides (25 lightyears) \n(C)ramuthea (200 lightyears) \n(S)meon T9Q (400 lightyears) \n(G)leshan 7Z9 (85 lightyears)'], selectDestination);
 	} else {
 		gamePrompt(
 			'"You must select one of these three actions." \nAsk about (A)rtifact \nAsk about other (P)lanets \n(L)eave', selectActionMesnides);
@@ -205,7 +208,6 @@ function selectActionMesnides(action) {
 
 function selectActionLaplides(action) {
 	if (action === 'a') {
-		artifactCollection.push('Myoin Horn');
 		gamePrompt(
 			['The Kiyturn says, "Here, take this Myoin Horn, an ancient Kiyturn instrument."',
 			assistOffer], selectActionLaplides);
@@ -216,7 +218,7 @@ function selectActionLaplides(action) {
 	} else if (action === 'l') {
 		gamePrompt(
 			['Thank you for visiting Mesnides. We hope you will come by again',
-			'"So! ' + whereToMessage], selectDestination);
+			'"So! ' + '"Where to, Captain ' + playerName + '?" \n(E)arth (10 lightyears) \n(M)esnides (20 lightyears) \n(L)aplides (50 lightyears) \n(K)iyturn (120 lightyears) \n(A)enides (25 lightyears) \n(C)ramuthea (200 lightyears) \n(S)meon T9Q (400 lightyears) \n(G)leshan 7Z9 (85 lightyears)'], selectDestination);
 	} else {
 		gamePrompt(
 			'"You must select one of these three actions." \nAsk about (A)rtifact \nAsk about other (P)lanets \n(L)eave', selectActionLaplides);
@@ -235,8 +237,8 @@ function selectActionKiyturn(action) {
 			assistOffer], selectActionKiyturn);
 	} else if (action === 'l') {
 		gamePrompt(
-			['Thank you for visiting Mesnides. We hope you will come by again',
-			'"So! ' + whereToMessage], selectDestination);
+			['Farewell, strange visitor to Kiyturn.',
+			'"So! ' + '"Where to, Captain ' + playerName + '?" \n(E)arth (10 lightyears) \n(M)esnides (20 lightyears) \n(L)aplides (50 lightyears) \n(K)iyturn (120 lightyears) \n(A)enides (25 lightyears) \n(C)ramuthea (200 lightyears) \n(S)meon T9Q (400 lightyears) \n(G)leshan 7Z9 (85 lightyears)'], selectDestination);
 	} else {
 		gamePrompt(
 			'"You must select one of these three actions." \nAsk about (A)rtifact \nAsk about other (P)lanets \n(L)eave', selectActionKiyturn);
@@ -245,7 +247,6 @@ function selectActionKiyturn(action) {
 
 function selectActionAenides(action) {
 	if (action === 'a') {
-		artifactCollection.push('Myoin Horn');
 		gamePrompt(
 			['The Mesnidian says, "Here, take this Myoin Horn, an ancient Mesnidian instrument."',
 			assistOffer], selectActionMesnides);
@@ -256,7 +257,7 @@ function selectActionAenides(action) {
 	} else if (action === 'l') {
 		gamePrompt(
 			['Thank you for visiting Mesnides. We hope you will come by again',
-			'"So! ' + whereToMessage], selectDestination);
+			'"So! ' + '"Where to, Captain ' + playerName + '?" \n(E)arth (10 lightyears) \n(M)esnides (20 lightyears) \n(L)aplides (50 lightyears) \n(K)iyturn (120 lightyears) \n(A)enides (25 lightyears) \n(C)ramuthea (200 lightyears) \n(S)meon T9Q (400 lightyears) \n(G)leshan 7Z9 (85 lightyears)'], selectDestination);
 	} else {
 		gamePrompt(
 			'"You must select one of these three actions." \nAsk about (A)rtifact \nAsk about other (P)lanets \n(L)eave', selectActionMesnides);
@@ -265,7 +266,6 @@ function selectActionAenides(action) {
 
 function selectActionCramuthea(action) {
 	if (action === 'a') {
-		artifactCollection.push('Myoin Horn');
 		gamePrompt(
 			['The Mesnidian says, "Here, take this Myoin Horn, an ancient Mesnidian instrument."',
 			assistOffer], selectActionMesnides);
@@ -276,7 +276,7 @@ function selectActionCramuthea(action) {
 	} else if (action === 'l') {
 		gamePrompt(
 			['Thank you for visiting Mesnides. We hope you will come by again',
-			'"So! ' + whereToMessage], selectDestination);
+			'"So! ' + '"Where to, Captain ' + playerName + '?" \n(E)arth (10 lightyears) \n(M)esnides (20 lightyears) \n(L)aplides (50 lightyears) \n(K)iyturn (120 lightyears) \n(A)enides (25 lightyears) \n(C)ramuthea (200 lightyears) \n(S)meon T9Q (400 lightyears) \n(G)leshan 7Z9 (85 lightyears)'], selectDestination);
 	} else {
 		gamePrompt(
 			'"You must select one of these three actions." \nAsk about (A)rtifact \nAsk about other (P)lanets \n(L)eave', selectActionMesnides);
@@ -285,18 +285,18 @@ function selectActionCramuthea(action) {
 
 function selectActionSmeon(action) {
 	if (action === 'a') {
-		artifactCollection.push('Myoin Horn');
+		artifactCollection.push('Cramun Flower');
 		gamePrompt(
-			['The Mesnidian says, "Here, take this Myoin Horn, an ancient Mesnidian instrument."',
+			['The Cramuthean says, "Here, take this dried Cramun Flower, a symbol of our once great civilization."',
 			assistOffer], selectActionMesnides);
 	} else if (action === 'p') {
 		gamePrompt(
-			['The Mesnidian says, "Well, Laplides suffered from atomic war and has been uninhabited for centuries. You would do well to avoid it on your journey."',
+			['The Cramuthean says, "Well, the people of Aenides once tried to take over our home planet by force. You would do well to avoid it on your journey."',
 			assistOffer], selectActionMesnides);
 	} else if (action === 'l') {
 		gamePrompt(
-			['Thank you for visiting Mesnides. We hope you will come by again',
-			'"So! ' + whereToMessage], selectDestination);
+			['Thank you for visiting Smeon T9Q. We hope you will come by again',
+			'"So! ' + '"Where to, Captain ' + playerName + '?" \n(E)arth (10 lightyears) \n(M)esnides (20 lightyears) \n(L)aplides (50 lightyears) \n(K)iyturn (120 lightyears) \n(A)enides (25 lightyears) \n(C)ramuthea (200 lightyears) \n(S)meon T9Q (400 lightyears) \n(G)leshan 7Z9 (85 lightyears)'], selectDestination);
 	} else {
 		gamePrompt(
 			'"You must select one of these three actions." \nAsk about (A)rtifact \nAsk about other (P)lanets \n(L)eave', selectActionMesnides);
@@ -305,18 +305,17 @@ function selectActionSmeon(action) {
 
 function selectActionGleshan(action) {
 	if (action === 'a') {
-		artifactCollection.push('Myoin Horn');
 		gamePrompt(
-			['The Mesnidian says, "Here, take this Myoin Horn, an ancient Mesnidian instrument."',
+			['The Gleshanian says, "We are but a poor people with little resources to spare to outsiders. We hope you understand our predicament."',
 			assistOffer], selectActionMesnides);
 	} else if (action === 'p') {
 		gamePrompt(
-			['The Mesnidian says, "Well, Laplides suffered from atomic war and has been uninhabited for centuries. You would do well to avoid it on your journey."',
+			['The Gleshanian says, "The people of Cramuthea once visited us. They were quite wealthy and helpful. Surely if you visit their world you would find them to be hospitable and generous."',
 			assistOffer], selectActionMesnides);
 	} else if (action === 'l') {
 		gamePrompt(
-			['Thank you for visiting Mesnides. We hope you will come by again',
-			'"So! ' + whereToMessage], selectDestination);
+			['Thank you for visiting Gleshan 7Z9. We hope you will come by again',
+			'"So! ' + '"Where to, Captain ' + playerName + '?" \n(E)arth (10 lightyears) \n(M)esnides (20 lightyears) \n(L)aplides (50 lightyears) \n(K)iyturn (120 lightyears) \n(A)enides (25 lightyears) \n(C)ramuthea (200 lightyears) \n(S)meon T9Q (400 lightyears) \n(G)leshan 7Z9 (85 lightyears)'], selectDestination);
 	} else {
 		gamePrompt(
 			'"You must select one of these three actions." \nAsk about (A)rtifact \nAsk about other (P)lanets \n(L)eave', selectActionMesnides);
